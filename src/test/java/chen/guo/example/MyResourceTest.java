@@ -1,5 +1,6 @@
-package example;
+package chen.guo.example;
 
+import chen.guo.example.jersey.JerseyGrizzlyRest;
 import org.glassfish.grizzly.http.server.HttpServer;
 
 import javax.ws.rs.client.Client;
@@ -14,10 +15,10 @@ public class MyResourceTest {
 
   @org.junit.Before
   public void setUp() throws Exception {
-    server = Main.startServer();
+    server = JerseyGrizzlyRest.startServer();
 
     Client c = ClientBuilder.newClient();
-    target = c.target(Main.BASE_URI);
+    target = c.target(JerseyGrizzlyRest.BASE_URI);
   }
 
   @org.junit.After
