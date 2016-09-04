@@ -15,8 +15,6 @@ import javax.ws.rs.core.MediaType;
 @Path("home")
 public class Home2 {
 
-  private DownloadService downloadService = new DownloadService();
-
   @GET
   @Path("get-param")
   @Produces(MediaType.TEXT_PLAIN)
@@ -45,7 +43,5 @@ public class Home2 {
     //curl --form "name=abc" localhost:8080/home/post-param-2
     System.out.println("In home/post-param-2");
     return "<h2>Hello-2, " + name + "</h2>";
-
   }
-
 }
