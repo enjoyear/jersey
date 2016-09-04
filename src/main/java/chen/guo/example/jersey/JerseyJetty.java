@@ -4,6 +4,7 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 
@@ -14,6 +15,7 @@ public class JerseyJetty {
     rh.setResourceBase("./src/webcontent");
 
     ResourceConfig resourceConfig = new ResourceConfig();
+    resourceConfig.register(MultiPartFeature.class);//This is needed for MediaType.MULTIPART_FORM_DATA
     resourceConfig.packages("chen/guo/example/jersey/rest");
     ServletHolder servlet = new ServletHolder(new ServletContainer(resourceConfig));
 

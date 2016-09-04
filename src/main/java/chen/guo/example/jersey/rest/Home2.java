@@ -13,7 +13,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 @Path("home")
-public class DownloadInput {
+public class Home2 {
 
   private DownloadService downloadService = new DownloadService();
 
@@ -30,19 +30,20 @@ public class DownloadInput {
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(MediaType.TEXT_HTML)
   public String postMethod(@FormParam("name") String name) {
-    //http://localhost:8080/home/post-param
+    //http://localhost:8080/
     System.out.println("In home/post-param");
     return "<h2>Hello, " + name + "</h2>";
   }
 
-//  @POST
-//  @Path("post-param-2")
-//  @Consumes(MediaType.MULTIPART_FORM_DATA)
-//  @Produces(MediaType.TEXT_HTML)
-//  public String postMethod2(@FormDataParam("name") String name) {
-//    //http://localhost:8080/home/post-param-2
-//    System.out.println("In home/post-param-2");
-//    return "<h2>Hello-2, " + name + "</h2>";
-//  }
+  @POST
+  @Path("post-param-2")
+  @Consumes(MediaType.MULTIPART_FORM_DATA)
+  @Produces(MediaType.TEXT_HTML)
+  public String postMethod2(@FormDataParam("name") String name) {
+    //http://localhost:8080/home/post-param-2
+    System.out.println("In home/post-param-2");
+    return "<h2>Hello-2, " + name + "</h2>";
+
+  }
 
 }
