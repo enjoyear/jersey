@@ -91,7 +91,7 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>chen.guo.example.jersey.JerseyGrizzlyRest</mainClass>
+          <mainClass>chen.guo.example.grizzly.JerseyGrizzlyRest</mainClass>
         </configuration>
       </plugin>
     </plugins>

@@ -1,4 +1,4 @@
-package chen.guo.example.jersey;
+package chen.guo.example.grizzly;
 
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
@@ -18,7 +18,7 @@ public class JerseyGrizzlyRest {
    */
   public static HttpServer startServer() {
     // create a resource config that scans for JAX-RS resources and providers in chen.guo.example package
-    final ResourceConfig rc = new ResourceConfig().packages("chen/guo/example/rest");
+    final ResourceConfig rc = new ResourceConfig().packages("chen/guo/example/grizzly/rest");
     return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
   }
 

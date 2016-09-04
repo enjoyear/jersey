@@ -1,4 +1,4 @@
-package chen.guo.example.rest;
+package chen.guo.example.grizzly.rest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

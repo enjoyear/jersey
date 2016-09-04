@@ -1,6 +1,6 @@
 package chen.guo.example;
 
-import chen.guo.example.jersey.JerseyGrizzlyRest;
+import chen.guo.example.grizzly.JerseyGrizzlyRest;
 import org.glassfish.grizzly.http.server.HttpServer;
 
 import javax.ws.rs.client.Client;
