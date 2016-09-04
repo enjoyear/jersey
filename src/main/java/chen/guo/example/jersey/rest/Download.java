@@ -25,6 +25,7 @@ public class Download {
   @Path("download")
   @Produces(MediaType.TEXT_HTML)
   public InputStream doGet() throws FileNotFoundException {
+    //http://localhost:8080/home/download
     File f = new File("src/webcontent/download.html");
     return new FileInputStream(f);
   }
@@ -34,8 +35,7 @@ public class Download {
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(MediaType.APPLICATION_OCTET_STREAM)
   public Response uploadDownload(@FormParam("name") String name) {
-    //http://localhost:8080/home/upload
-    //curl --form "name=hi,there" localhost:8080/home/download
+    //curl --data "name=hi,there" localhost:8080/home/download
     System.out.println("download");
     StreamingOutput stream = os -> {
       downloadService.download(os, name);
