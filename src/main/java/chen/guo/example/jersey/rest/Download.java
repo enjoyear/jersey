@@ -26,7 +26,7 @@ public class Download {
   @Produces(MediaType.TEXT_HTML)
   public InputStream doGet() throws FileNotFoundException {
     //http://localhost:8080/home/download
-    File f = new File("src/webcontent/download.html");
+    File f = new File("src/main/webapp/WEB-INF/html/download.html");
     return new FileInputStream(f);
   }
 

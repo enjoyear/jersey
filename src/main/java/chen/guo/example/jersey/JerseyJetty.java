@@ -12,7 +12,7 @@ public class JerseyJetty {
 
   private static Server createServer() {
     ResourceHandler rh = new ResourceHandler();
-    rh.setResourceBase("./src/webcontent");
+    rh.setResourceBase("src/main/webapp");
 
     ResourceConfig resourceConfig = new ResourceConfig();
     resourceConfig.register(MultiPartFeature.class);//This is needed for MediaType.MULTIPART_FORM_DATA
