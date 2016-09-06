@@ -1,6 +1,7 @@
 package chen.guo.example.jersey.rest;
 
 import chen.guo.example.jersey.service.DownloadService;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -15,6 +16,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 
 @Path("home")
 public class Download {
@@ -32,13 +35,33 @@ public class Download {
 
   @POST
   @Path("download")
-  @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+  @Consumes(MediaType.MULTIPART_FORM_DATA)
   @Produces(MediaType.APPLICATION_OCTET_STREAM)
-  public Response uploadDownload(@FormParam("name") String name) {
-    //curl --data "name=hi,there" localhost:8080/home/download
-    System.out.println("download");
+  public Response uploadDownload(@FormDataParam("content") String content,
+                                 @FormDataParam("option") String option,
+                                 @FormDataParam("fileStream") InputStream fileStream,
+                                 @FormDataParam("checkbox") String checkBox) {
+    //curl --data "content=hi,there" localhost:8080/home/download
+    System.out.println("downloading...");
     StreamingOutput stream = os -> {
-      downloadService.download(os, name);
+      StringBuilder sb = new StringBuilder();
+      sb.append("Content:,").append(content).append("\n");
+      sb.append("Option:,").append(option).append("\n");
+      sb.append("CheckBox:,").append(checkBox).append("\n"); //returns "on" or null
+
+      final int bufferSize = 1024;
+      final char[] buffer = new char[bufferSize];
+      final StringBuilder out = new StringBuilder();
+      Reader reader = new InputStreamReader(fileStream, "UTF-8");
+      while (true) {
+        int size = reader.read(buffer, 0, buffer.length);
+        if (size < 0)
+          break;
+        out.append(buffer, 0, size);
+      }
+
+      sb.append("Uploaded File:,").append(out.toString()).append("\n");
+      downloadService.download(os, sb.toString());
     };
     //String mediaType = download != null ? "text/csv" : MediaType.TEXT_PLAIN;
     return Response.ok(stream, "text/csv").build();
